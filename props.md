@@ -28,10 +28,6 @@
   - [Destructuring props](#destructuring-props)
   - [propTypes](#proptypes)
   - [defaultProps](#defaultprops)
-- [Exercises: Components and Props](#exercises-components-and-props)
-  - [Exercises: Level 1](#exercises-level-1)
-  - [Exercises: Level 2](#exercises-level-2)
-  - [Exercises: Level 3](#exercises-level-3)
 
 # Props
 
@@ -55,7 +51,7 @@ const getUserInfo = (firstName, lastName, country) => {
 
 // calling a functons
 
-getUserInfo('Julius', 'Yeteyeh', 'Finland')
+getUserInfo('Julius', 'Adebowale', 'Nigeria')
 
 //component syntax
 
@@ -72,7 +68,7 @@ const User = (props) => {
   )
 }
 // calling or instantiating a component, this component has three properties and we call them props:firstName, lastName, country
-<User firstName = 'Julius', lastName='Adebowale' country = 'Finland' />
+<User firstName = 'Julius', lastName='Adebowale' country = 'Nigeria' />
 ```
 
 In the previous section, we injected data as follows and today we will change these data to props.
@@ -1061,36 +1057,3 @@ The propTypes package helps us to assign the data types of the props we passed t
 The defaultProps can be used when we want to have some default prop types for a component.
 
 We will cover propTypes in detail in other sections.
-
-# Exercises: Components and Props
-
-## Exercises: Level 1
-
-1. What is props in a React component ?
-2. How do you access props in a React component ?
-3. What data types can we pass as props to components ?
-4. What is a propTypes?
-5. What is a default propTypes?
-
-## Exercises: Level 2
-
-1. Create a functional component and display the following images
-   ![Front end](../images/frontend_technologies.png)
-
-2. Use functional component to create the following design
-
-![News Letter](../images/news_letter_design.png)
-
-## Exercises: Level 3
-
-1.  Use the given hexadecimal color generator in the example to create these random colors. If you don't know how to generate the hexadecimal color you can use [dummy data generator](https://www.30daysofreact.com/dummy-data)
-
-![Hexadecimal colors](../images/hexadecimal_color_exercise.png)
-
-2. Use functional component to design the following user card.
-
-![User Card](../images/user_card_design_jsx.png)
-
-🎉 CONGRATULATIONS ! 🎉
-
-[<< Day 4](../04_Day_Component/04_components.md) | [Day 6 >>](../06_Day_Map_List_Keys/06_map_list_keys.md)
