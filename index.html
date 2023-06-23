@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React JS Class</title>
+  </head>
+
+  <body>
+    <div class="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // To get the root element from the HTML document
+      const rootElement = document.querySelector(".root");
+
+      // style
+      const headerStyles = {
+        backgroundColor: "#61DBFB",
+        fontFamily: "Helvetica Neue",
+        padding: 25,
+        lineHeight: 1.5,
+      };
+
+      // JSX element, header
+      const header = (
+        <header style={headerStyles}>
+          <div className="header-wrapper">
+            <h1>Welcome to React JS</h1>
+            <h2>Getting Started React</h2>
+            <h3>JavaScript Library</h3>
+            <p>Adebowale Julius</p>
+            <small>June 23, 2023</small>
+          </div>
+        </header>
+      );
+
+      // JSX element, main
+      const mainStyles = {
+        backgroundColor: "#F3F0F5",
+      };
+      const main = (
+        <main style={mainStyles}>
+          <p>Prerequisite to get started react.js:</p>
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </main>
+      );
+
+      const footerStyles = {
+        backgroundColor: "#61DBFB",
+      };
+      // JSX element, footer
+      const footer = (
+        <footer style={footerStyles}>
+          <p>Copyright 2023</p>
+        </footer>
+      );
+
+      // JSX element, app
+      const app = (
+        <div className="app">
+          {header}
+          {main}
+          {footer}
+        </div>
+      );
+
+      // we render the JSX element using the ReactDOM package
+      ReactDOM.render(app, rootElement);
+    </script>
+  </body>
+</html>
