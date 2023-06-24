@@ -15,457 +15,120 @@
 </div>
 
 - [Components](#components)
-  - [Big picture of components](#big-picture-of-components)
-  - [JavaScript function](#javascript-function)
-  - [JavaScript Class](#javascript-class)
-  - [Creating React Component](#creating-react-component)
-    - [Functional Component](#functional-component)
-    - [Rendering components](#rendering-components)
-    - [Injecting data to JSX in React Component](#injecting-data-to-jsx-in-react-component)
-    - [Further on Functional components](#further-on-functional-components)
+  - [Class Components](#class-components)
+  - [Functional Components](#functional-components)
+  - [Key Differences](#key-differences)
+  - [How To Use Components](#how-to-use-components)
+    - [Components inside components](#components-inside-components)
 
 # Components
 
-A React component is a small, reusable code, which is responsible for one part of the application UI. A React application is an aggregation of components. React can help us to build reusable components. The following diagram shows different components. All the components have different border colors. In React we assemble different components together to create an application. We use JavaScript functions or classes to make components. If we use a function, the component will be a functional component, but if we use a class, the component will be a class-based component.
+A React component is a small, reusable code, which is responsible for one part of the application UI. A React application is an aggregation of components. React can help us to build reusable components. The following diagram shows different components. All the components have different border colors. In React we assemble different components together to create an application. We use JavaScript functions or classes to make components. If we use a function, the component will be a functional component, but if we use a class, the component will be a class-based component. Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+`Components are like functions that return HTML elements.`
+Components come in two types, Class components and Function components, in this class we will concentrate on Function components. But to understand the difference let's explain it...
 
-Components can be:
+## Class Components
 
-- Functional Component / Presentational Component / Stateless Component / Dumb Component
-- Class Component / Container Component/ Statefull Component / Smart Component
+Class components are the older way of creating components in React. They are defined as JavaScript classes that extend the React.Component class. Here's an example of a class component:
 
-The classification of components above does not work for the latest version of React, but it is good to know the former definition and how the previous versions work.
+```jsx
+import React from "react";
 
-So, let us change all the JSX to components. Components in React are JavaScript functions or classes, that return a JSX. Component name must start with an uppercase, and if the name is two words, it should be CamelCase - a camel with two humps.
-
-## Big picture of components
-
-In the previous section we agreed, that a website or an application is made of buttons, forms, texts, media objects, header, section, article and footer. If we have a million-dollar button, we can use this button all the time, instead of recreating it all over again, whenever we need a button. The same goes for input fields, forms, header or footer. That is where the power of the component comes. The header, main and footer are components. Inside the main there is also a user card component and a text section component. All the different colors represent different components. How many colors do you see? Each color represent a single component. We have five components in this diagram.
-
-Before we jump into React components, let's do some functions and class refreshers.
-
-## JavaScript function
-
-A JavaScript function could be either a regular function or an arrow function. These functions are not exactly the same there is a slight difference between them.
-
-```js
-const getUserInfo = (firstName, lastName, country, title, skills) => {
-  return `${firstName} ${lastName},  a ${title} developer based in ${country}. He knows ${skills.join(
-    " "
-  )} `;
-};
-// When we call this function we need parameters
-const skills = ["HTML", "CSS", "JS", "React"];
-console.log(
-  getUserInfo("Juadeb", "Adebowale", "Nigeria", "FullStack Developer", skills)
-);
-```
-
-## JavaScript Class
-
-A class is a blueprint of an object. We instantiate a class to create different objects. In addition, we can create children, by inheriting all the methods and properties of the parent.
-
-```js
-class Parent {
-  constructor(firstName, lastName, country, title) {
-    // we bind the params with this class object using this keyword
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.country = country;
-    this.title = title;
-  }
-  getPersonInfo() {
-    return `${this.firstName} ${this.lastName},  a ${this.title} developer base in ${this.country} `;
-  }
-  parentMethod() {
-    // code goes here
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.name}!</h1>;
   }
 }
 
-const p1 = new Parent("Juadeb", "Adebowale", "Nigeria", "FullStack Developer");
+export default Welcome;
+```
 
-class Child extends Parent {
-  constructor(firstName, lastName, country, title, skills) {
-    super(firstName, lastName, country, title);
-    this.skills = skills;
-    // we bind the child params with the this keyword to this child object
-  }
-  getSkills() {
-    let len = this.skills.length;
-    return len > 0 ? this.skills.join(" ") : "No skills found";
-  }
-  childMethod() {
-    // code goes here
-  }
+In this example, Welcome is a class component that extends the React.Component class. It has a render() method that returns the JSX (JavaScript XML) representing the component's UI. Class components have access to the component lifecycle methods, such as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`. They can also have their own component state using `this.state`.
+
+## Functional Components
+
+Functional components are the newer and simpler way of creating components in React. They are defined as JavaScript functions. Here's an example of a functional component:
+
+```jsx
+import React from "react";
+
+function Welcome() {
+  return <h1>Hello, {name}!</h1>;
 }
 
-const skills = ["HTML", "CSS", "JS", "React"];
-
-const child = new Child(
-  "Juadeb",
-  "Adebowale",
-  "Nigeria",
-  "FullStack Developer",
-  skills
-);
+export default Welcome;
 ```
 
-We just briefly covered function and class. React component is made of JavaScript functions or classes, so let's make a React component now.
+In this example, Welcome is a functional component defined as a JavaScript function. It receives the props object as an argument and returns the JSX representing the component's UI. Functional components are primarily used for presentational purposes and don't have access to component lifecycle methods or state management. However, with the introduction of React hooks, functional components can now manage state and have access to lifecycle functionalities using hooks like `useState`, `useEffect`, and others.
 
-## Creating React Component
+## Key Differences
 
-### Functional Component
+- Syntax: Class components use the class syntax and extend React.Component, while functional components are defined as JavaScript functions.
+- Lifecycle Methods: Class components have access to lifecycle methods like `componentDidMount`, `componentDidUpdate`, etc., while functional components can use hooks to achieve similar functionality.
+- State Management: Class components can have their own state using `this.state`, while functional components can use hooks like `useState` to manage state.
+- Simplicity: Functional components are generally simpler and easier to read and write compared to class components.
 
-Using a JavaScript function, we can make a functional React component.
+In recent versions of React, functional components have become the preferred way of writing components due to their simplicity and the introduction of hooks. However, class components are still supported and widely used in existing codebases.
 
-```js
-// React component syntax
-// it can be arrow function, function declaration or function expression
-const jsx = <tag> Content </tag>;
-const ComponentName = () => {
-  return jsx;
-};
-```
+## How To Use Components
 
-The following expression is a JSX element.
+Components in React should be added within the appropriate parent components or containers. This is typically done in the render() or return statement of the parent component.
 
-```js
-// JSX element, header
-const header = (
-  <header style={headerStyles}>
-    <div className="header-wrapper">
-      <h1>Welcome to React JS Class</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Juadeb Adebowale</p>
-      <small>Oct 3, 2023</small>
-    </div>
-  </header>
-);
+In React, components are reusable building blocks that encapsulate a specific piece of UI and its logic. They can be composed together to create complex UI structures.
 
-// React Component
-const Header = () => {
-  return header;
-};
+Here's an example of adding components within a parent component:
 
-// or we can just return the JSX
+```jsx
+Copy code
+import React from 'react';
+import Header from './Header';
+import MainContent from './MainContent';
+import Footer from './Footer';
 
-const Header = () => {
+function App() {
   return (
-    <header style={headerStyles}>
-      <div className="header-wrapper">
-        <h1>Welcome to React JS Class</h1>
-        <h2>Getting Started React</h2>
-        <h3>JavaScript Library</h3>
-        <p>Juadeb Adebowale</p>
-        <small>Oct 3, 2023</small>
-      </div>
-    </header>
+    <div className="App">
+      <Header />
+      <MainContent />
+      <Footer />
+    </div>
   );
-};
+}
 
-// Even th above code can be written like this
-// Explicitly returning the JSX
-const Header = () => (
-  <header style={headerStyles}>
-    <div className="header-wrapper">
-      <h1>Welcome to React JS Class</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Juadeb Adebowale</p>
-      <small>Oct 3, 2023</small>
-    </div>
-  </header>
-);
+export default App;
 ```
 
-### Rendering components
+In this example, we have an App component that serves as the root component of our application. It includes three child components: `Header`, `MainContent`, and `Footer`. Each child component represents a different section of the application's UI.
 
-Now, lets change all the JSX elements we had to components. When we call JSX element we use curly brackets and when we call components we do as follows <ComponentName />. If we pass an attribute, when we call the component name, we call it props(<ComponentName propsName = {'data-type'} />). We will talk about props in another section.
+By adding components within the return statement of the parent component, they will be rendered and displayed on the page when the parent component is rendered.
 
-Let's render first the _Header_ component.
+It's important to organize your components in a logical structure and determine the appropriate hierarchy based on the UI requirements. Components can also pass data called `(props)` to their child components to customize their behavior or appearance.
 
-```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
+Remember to import the component files (`Header`, `MainContent`, `Footer` in the example) and ensure they are located in the correct directory relative to the parent component.
 
-// Header Component
-const Header = () => (
-  <header>
-    <div className="header-wrapper">
-      <h1>Welcome to React JS Class</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Juadeb Adebowale</p>
-      <small>Oct 3, 2023</small>
-    </div>
-  </header>
-);
+By properly adding components within their parent components, you can create modular and reusable UI structures in your React application.
 
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(<Header />, rootElement);
-```
+### Components inside components
 
-Now, let's create an App component , that will wrap the Header, Main and Footer. Then the App component will be render on the DOM.
+We can refer to components inside other components:
+
+Example
+Use the Car component inside the Garage component:
 
 ```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-import JuadebImage from "./images/Juadeb.jpg";
+function Car() {
+  return <h2>I am a Car!</h2>;
+}
 
-// Header Component
-const Header = () => (
-  <header>
-    <div className="header-wrapper">
-      <h1>Welcome to React JS Class</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Juadeb Adebowale</p>
-      <small>Oct 3, 2023</small>
-    </div>
-  </header>
-);
-
-// User Card Component
-const UserCard = () => (
-  <div className="user-card">
-    <img src={JuadebImage} alt="Juadeb image" />
-    <h2>Juadeb Adebowale</h2>
-  </div>
-);
-
-// TechList Component
-const TechList = () => {
-  const techs = ["HTML", "CSS", "JavaScript"];
-  const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>);
-  return techsFormatted;
-};
-
-// Main Component
-const Main = () => (
-  <main>
-    <div className="main-wrapper">
-      <p>Prerequisite to get started react.js:</p>
-      <ul>
-        <TechList />
-      </ul>
-      <UserCard />
-    </div>
-  </main>
-);
-
-// Footer Component
-const Footer = () => (
-  <footer>
-    <div className="footer-wrapper">
-      <p>Copyright 2023</p>
-    </div>
-  </footer>
-);
-
-// The App, or the parent or the container component
-const App = () => (
-  <div className="app">
-    <Header />
-    <Main />
-    <Footer />
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the App component using the ReactDOM package
-ReactDOM.render(<App />, rootElement);
-```
-
-### Injecting data to JSX in React Component
-
-So far, we used static data on the JSX elements. Now let's pass different data types as dynamic data. The dynamic data could be strings, numbers, booleans, arrays or objects. Let us see each of the data types step by step. To inject data to a JSX we use the {} bracket.
-
-In this section we inject only strings
-
-```js
-import React from "react";
-import ReactDOM from "react-dom";
-
-const welcome = "Welcome to React JS Class";
-const title = "Getting Started React";
-const subtitle = "JavaScript Library";
-const firstName = "Juadeb";
-const lastName = "Adebowale";
-const date = "Oct 3, 2023";
-
-// JSX element, header
-const header = () => {
+function Garage() {
   return (
-    <header>
-      <div className="header-wrapper">
-        <h1>{welcome}</h1>
-        <h2>{title}</h2>
-        <h3>{subtitle}</h3>
-        <p>
-          Instructor: {firstName} {lastName}
-        </p>
-        <small>Date: {date}</small>
-      </div>
-    </header>
+    <>
+      <h1>Who lives in my Garage?</h1>
+      <Car />
+    </>
   );
-};
-const rootElement = document.getElementById("root");
-// we render the App component using the ReactDOM package
-ReactDOM.render(<Header />, rootElement);
-```
+}
 
-Similar to the Header component we can implement to Main and Footer component.
-
-```js
-// To get the root element from the HTML document
-const rootElement = document.querySelector(".root");
-// JSX element, header
-const welcome = "Welcome to React JS Class Challenge";
-const title = "Getting Started React";
-const subtitle = "JavaScript Library";
-const author = {
-  firstName: "Juadeb",
-  lastName: "Adebowale",
-};
-const date = "Oct 2, 2023";
-
-// JSX element, header
-const Header = () => (
-  <header>
-    <div className="header-wrapper">
-      <h1>{welcome}</h1>
-      <h2>{title}</h2>
-      <h3>{subtitle}</h3>
-      <p>
-        Instructor: {author.firstName} {author.lastName}
-      </p>
-      <small>Date: {date}</small>
-    </div>
-  </header>
-);
-
-const numOne = 3;
-const numTwo = 2;
-
-const result = (
-  <p>
-    {numOne} + {numTwo} = {numOne + numTwo}
-  </p>
-);
-
-const yearBorn = 1820;
-const currentYear = 2023;
-const age = currentYear - yearBorn;
-const personAge = (
-  <p>
-    {" "}
-    {author.firstName} {author.lastName} is {age} years old
-  </p>
-);
-
-// User Card Component
-const UserCard = () => (
-  <div className="user-card">
-    <img src={JuadebImage} alt="Juadeb image" />
-    <h2>
-      {author.firstName} {author.lastName}
-    </h2>
-  </div>
-);
-
-// JSX element, main
-const techs = ["HTML", "CSS", "JavaScript"];
-const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>);
-
-// JSX element, main
-const Main = () => (
-  <main>
-    <div className="main-wrapper">
-      <div>
-        <p>
-          Prerequisite to get started{" "}
-          <strong>
-            <em>react.js</em>
-          </strong>
-          :
-        </p>
-        <ul>{techsFormatted}</ul>
-        {result}
-        {personAge}
-      </div>
-      <UserCard />
-    </div>
-  </main>
-);
-
-const copyRight = "2023";
-
-// JSX element, footer
-const Footer = () => (
-  <footer>
-    <div className="footer-wrapper">
-      <p>Copyright &copy;{copyRight}</p>
-    </div>
-  </footer>
-);
-
-// JSX element, app
-const app = () => (
-  <div className="app">
-    <Header />
-    <Main />
-    <Footer />
-  </div>
-);
-
-// we render the App component using the ReactDOM package
-ReactDOM.render(<App />, rootElement);
-```
-
-### Further on Functional components
-
-We have transformed all the JSX elements to functional components, and by now you are very familiar with components. Let's create more components. What is the smallest size of a component? A component that returns only a single HTML as JSX is considered as a small component. A button component or an alert box component, or just an input field component.
-
-```js
-const Button = () => <button>action</button>;
-```
-
-The _Button_ component is made of a single HTML button element.
-Let's style this button using JavaScript style object. All CSS properties should be camelCase to make a JavaScript CSS object. If we pass a number without unit as CSS value, it is considered as px. See the example below.
-
-```js
-const buttonStyles = {
-  padding: "10px 20px",
-  background: "rgb(0, 255, 0",
-  border: "none",
-  borderRadius: 5,
-};
-const Button = () => <button style={buttonStyles}> action </button>;
-```
-
-The Button component is a dumb component, because it does not take any parameters and we cannot change the action text dynamically. We need to pass props to the button, to change the value dynamically. We will see props in the next section. Before we close today's class let's make another, more functional component, which displays a random hexadecimal number.
-
-```js
-import React from "react";
-import ReactDOM from "react-dom";
-
-// Hexadecimal color generator
-const hexaColor = () => {
-  let str = "0123456789abcdef";
-  let color = "";
-  for (let i = 0; i < 6; i++) {
-    let index = Math.floor(Math.random() * str.length);
-    color += str[index];
-  }
-  return "#" + color;
-};
-
-const HexaColor = () => <div>{hexaColor()}</div>;
-
-const rootElement = document.getElementById("root");
-// we render the App component using the ReactDOM package
-ReactDOM.render(<HexaColor />, rootElement);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Garage />);
 ```
