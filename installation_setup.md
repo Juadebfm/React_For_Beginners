@@ -26,9 +26,10 @@
   - [Create React App](#create-react-app)
 - [Your first React App](#your-first-react-app)
   - [React Boilerplate](#react-boilerplate)
-  - [Styles in JSX](#styles-in-jsx)
-  - [Injecting data to JSX elements](#injecting-data-to-jsx-elements)
-  - [Importing Media Objects in React](#importing-media-objects-in-react)
+  - [Update To New "Root" API \& React 18](#update-to-new-root-api--react-18)
+    - [Client Rendering](#client-rendering)
+    - [Server Rendering](#server-rendering)
+  - [ES 6](#es-6)
 
 # Setting Up
 
@@ -118,43 +119,43 @@ You may need to install these extensions from Visual Studio Code
 To create a react project you can use one of the following ways. Let's assume you installed node. Open the command line interface (CLI), git bash or terminal on Mac or Linux. Then run the following command. I am using git bash.
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop
+Juadeb@OAAJAR MINGW64 ~/Desktop
 $ npx create-react-app name-of-your-project
 ```
 
 If you do not like to write npx every time you create a project you may install create-react-app package globally in your computer using the following command.
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop
+Juadeb@OAAJAR MINGW64 ~/Desktop
 $ npm install -g create-react-app
 ```
 
 After you installed create-react-app, you create a React application as follows:
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop
+Juadeb@OAAJAR MINGW64 ~/Desktop
 $ create-react-app name-of-project
 ```
 
 # Your first React App
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~
+Juadeb@OAAJAR MINGW64 ~
 \$ cd Desktop/
 ```
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop
+Juadeb@OAAJAR MINGW64 ~/Desktop
 \$ npx create-react-app client
 ```
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop
+Juadeb@OAAJAR MINGW64 ~/Desktop
 \$ cd client/
 ```
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop/client (master)
+Juadeb@OAAJAR MINGW64 ~/Desktop/client (master)
 \$ npm start
 ```
 
@@ -176,7 +177,7 @@ It is good to know these folders and files.
   - index.html - the only HTML file we have in the entire application
 
   - favicon.ico - an icon file
-  - manifest.json - is used to make the application a progressive web app
+  - manifest.json - It provides information to the browser and the operating system about how the app should behave when installed on a device or accessed as a web app.
   - other images - open graph images(open graph images are images which are visible when a link share on social media)
   - robots.txt - information, if the website allows web scraping
 
@@ -195,10 +196,6 @@ It is good to know these folders and files.
 
 Now lets remove all the files, which we do not need at the moment, and leave only the files we need right now.
 
-After removing most of the files, the structure of the boilerplate looks like this:
-
-![React Boilerplate Cleaned](./react_bolier_plate_cleaned.png)
-
 Now lets write code on index.js. First of, we should import React and ReactDOM. React allows us to write JSX and ReactDOM to render the JSX on the DOM. ReactDOM has a render method. Let's use all the JSX elements we created on Day 2. The ReactDOM render method takes two parameters, a JSX or a component and the root.
 
 ```js
@@ -206,496 +203,111 @@ Now lets write code on index.js. First of, we should import React and ReactDOM. 
 // importing the react and react-dom package
 
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
-const jsxElement = <h1>This is a JSX element</h1>;
-const rootElement = document.getElementById("root");
+const myFirstElement = <h1>Hello React!</h1>;
 
-ReactDOM.render(jsxElement, rootElement);
-```
-
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Roboto:300,400,500&display=swap"
-      rel="stylesheet"
-    />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-
-    <title>React First Class</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(myFirstElement);
 ```
 
 If your application is not running, go to your project folder and run the following command
 
 ```sh
-Juadeb@DESKTOP-KGC1AKC MINGW64 ~/Desktop/client (master)
+Juadeb@OAAJAR MINGW64 ~/Desktop/client (master)
 \$ npm start
 ```
 
-If you do not have any bugs, your React app will be launched on the browser.
+If you do not have any bugs, your React app will be launched on the browser
 
-Let's write more JSX elements and render them on the browser. This expression is a JSX element which is made of h2 HTML element.
+## Update To New "Root" API & React 18
 
-```js
-const title = <h2>Getting Started React</h2>;
+Upgrading an existing React application to version 18 only requires two steps. To install the latest version, from your project folder run the following from the terminal:
+
+```sh
+npm i react@latest react-dom@latest
 ```
 
-Let's add more content to the previous JSX and change the name to header.
+In order to take advantage of React 18's concurrent features you'll need to use the new root API for client rendering. Now what is `Client Rendering`
+
+### Client Rendering
+
+Client rendering, also known as client-side rendering, is the default rendering approach in React. It means that the rendering process happens in the user's browser. Here's an example:
 
 ```js
-const header = (
-  <header>
-    <h1>Welcome to 30 Days Of React</h1>
-    <h2>Getting Started React</h2>
-    <h3>JavaScript Library</h3>
-  </header>
-);
-```
-
-Let's render this to the browser, in order to do so, we need ReactDOM.
-
-```js
-//index.js
-// importing the react and react-dom package
-
+//App.jsx
 import React from "react";
-import ReactDOM from "react-dom";
 
-const header = (
-  <header>
-    <h1>Welcome to 30 Days Of React</h1>
-    <h2>Getting Started React</h2>
-    <h3>JavaScript Library</h3>
-    <p>Juadeb Adebowale</p>
-    <small>Oct 2, 2023</small>
-  </header>
-);
-const rootElement = document.getElementById("root");
+function App() {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <p>Welcome to my website.</p>
+    </div>
+  );
+}
 
-ReactDOM.render(header, rootElement);
+export default App;
 ```
 
-Now, lets add all the JSX we created on before now.
+In client rendering, the React components are bundled and sent to the user's browser. The browser then interprets the JavaScript code and renders the components in the DOM (Document Object Model). This allows the user to interact with the website and see the changes in real-time. Client rendering is suitable for dynamic and interactive applications.
+
+### Server Rendering
+
+Server rendering, also known as server-side rendering (SSR), is an alternative rendering approach in React. It means that the rendering process happens on the server before sending the HTML to the user's browser. Here's an example:
 
 ```js
-//index.js
-// importing the react and react-dom package
+// App.js
 import React from "react";
-import ReactDOM from "react-dom";
 
-// JSX element, header
-const header = (
-  <header>
-    <h1>Welcome to 30 Days Of React</h1>
-    <h2>Getting Started React</h2>
-    <h3>JavaScript Library</h3>
-    <p>Juadeb Adebowale</p>
-    <small>Oct 2, 2023</small>
-  </header>
-);
+function App() {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <p>Welcome to my website.</p>
+    </div>
+  );
+}
 
-// JSX element, main
-const main = (
-  <main>
-    <p>Prerequisite to get started react.js:</p>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-    </ul>
-  </main>
-);
-
-// JSX element, footer
-const footer = (
-  <footer>
-    <p>Copyright 2023</p>
-  </footer>
-);
-
-// JSX element, app, a container or a parent
-const app = (
-  <div>
-    {header}
-    {main}
-    {footer}
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-// ReactDOM has the render method and the render method takes two argument
-ReactDOM.render(app, rootElement);
-// or
-//  ReactDOM.render([header, main, footer], rootElement)
+export default App;
 ```
 
-## Styles in JSX
+In server rendering, the React components are rendered on the server using a server-side rendering framework like Next.js or Gatsby. The server generates the HTML with the rendered components and sends it as a complete HTML page to the user's browser. This allows the user to see the fully rendered page immediately, even before the JavaScript code loads and executes. Server rendering is beneficial for improving initial page load performance and SEO (Search Engine Optimization).
 
-Let's apply style to the JSX elements. We can style JSX either using inline, internal or external CSS styles. Now, let's apply inline styles to each JSX element.
+Here's an example using Next.js, a popular server-side rendering framework for React:
 
-```js
-// index.js
+```jsx
+// pages/index.js
 import React from "react";
-import ReactDOM from "react-dom";
 
-const headerStyles = {
-  backgroundColor: "#61DBFB",
-  fontFamily: "Helvetica Neue",
-  padding: 25,
-  lineHeight: 1.5,
-};
-
-// JSX element, header
-const header = (
-  <header style={headerStyles}>
-    <div className="header-wrapper">
-      <h1>Welcome to 30 Days Of React</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Juadeb Adebowale</p>
-      <small>Oct 2, 2023</small>
+function Home() {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <p>Welcome to my website.</p>
     </div>
-  </header>
-);
+  );
+}
 
-// JSX element, main
-const mainStyles = {
-  backgroundColor: "#F3F0F5",
-};
-const main = (
-  <main style={mainStyles}>
-    <p>Prerequisite to get started react.js:</p>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-    </ul>
-  </main>
-);
-
-const footerStyles = {
-  backgroundColor: "#61DBFB",
-};
-// JSX element, footer
-const footer = (
-  <footer style={footerStyles}>
-    <p>Copyright 2023</p>
-  </footer>
-);
-
-// JSX element, app
-const app = (
-  <div className="app">
-    {header}
-    {main}
-    {footer}
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(app, rootElement);
+export default Home;
 ```
 
-Now, lets apply an internal style, we put all the CSS in the header of the index.html.
+In Next.js, the pages directory contains the server-rendered pages. The framework handles the server rendering process and generates the complete HTML pages with the rendered React components.
 
-```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-// JSX element, header
-const header = (
-  <header>
-    <div className="header-wrapper">
-      <h1>Welcome to 30 Days Of React</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Instructor: Juadeb Adebowale</p>
-      <small>Date: Oct 1, 2023</small>
-    </div>
-  </header>
-);
+To summarize, `client rendering` renders the components in the user's browser using JavaScript, while `server rendering` renders the components on the server and sends the fully rendered HTML to the user's browser. Both approaches have their benefits and are used based on specific requirements and use cases.
 
-// JSX element, main
-const main = (
-  <main>
-    <div className="main-wrapper">
-      <p>
-        Prerequisite to get started{" "}
-        <strong>
-          <em>react.js</em>
-        </strong>
-        :
-      </p>
-      <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li> JavaScript</li>
-      </ul>
-    </div>
-  </main>
-);
+## ES 6
 
-// JSX element, footer
-const footer = (
-  <footer>
-    <div className="footer-wrapper">
-      <p>Copyright 2023</p>
-    </div>
-  </footer>
-);
+ES6 stands for ECMAScript 6. ECMAScript was created to standardize JavaScript, and ES6 is the 6th version of ECMAScript, it was published in 2015, and is also known as ECMAScript 2015.
 
-// JSX element, app
-const app = (
-  <div className="app">
-    {header}
-    {main}
-    {footer}
-  </div>
-);
+Why Should I Learn ES6?
+React uses ES6, and you should be familiar with some of the new features like:
 
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(app, rootElement);
-```
-
-## Injecting data to JSX elements
-
-```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-// To get the root element from the HTML document
-
-// JSX element, header
-const welcome = "Welcome to 30 Days Of React";
-const title = "Getting Started React";
-const subtitle = "JavaScript Library";
-const author = {
-  firstName: "Juadeb",
-  lastName: "Adebowale",
-};
-const date = "Oct 2, 2023";
-
-// JSX element, header
-const header = (
-  <header>
-    <div className="header-wrapper">
-      <h1>{welcome}</h1>
-      <h2>{title}</h2>
-      <h3>{subtitle}</h3>
-      <p>
-        Instructor: {author.firstName} {author.lastName}
-      </p>
-      <small>Date: {date}</small>
-    </div>
-  </header>
-);
-
-const numOne = 3;
-const numTwo = 2;
-
-const result = (
-  <p>
-    {numOne} + {numTwo} = {numOne + numTwo}
-  </p>
-);
-
-const yearBorn = 1820;
-const currentYear = new Date().getFullYear();
-const age = currentYear - yearBorn;
-const personAge = (
-  <p>
-    {" "}
-    {author.firstName} {author.lastName} is {age} years old
-  </p>
-);
-
-// JSX element, main
-const techs = ["HTML", "CSS", "JavaScript"];
-const techsFormatted = techs.map((tech) => <li>{tech}</li>);
-
-// JSX element, main
-const main = (
-  <main>
-    <div className="main-wrapper">
-      <p>
-        Prerequisite to get started{" "}
-        <strong>
-          <em>react.js</em>
-        </strong>
-        :
-      </p>
-      <ul>{techsFormatted}</ul>
-      {result}
-      {personAge}
-    </div>
-  </main>
-);
-
-const copyRight = "Copyright 2023";
-
-// JSX element, footer
-const footer = (
-  <footer>
-    <div className="footer-wrapper">
-      <p>{copyRight}</p>
-    </div>
-  </footer>
-);
-
-// JSX element, app
-const app = (
-  <div className="app">
-    {header}
-    {main}
-    {footer}
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(app, rootElement);
-```
-
-## Importing Media Objects in React
-
-How do we import images, video and audio in React? Let's see how we import images first.
-Create images folder in the src folder and save an image inside. For instance let's save Juadeb.jpg image and let's import this image to index.js. After importing we will inject it to a JSX expression, user. See the code below.
-
-```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-import JuadebImage from "./images/Juadeb.jpg";
-
-const user = (
-  <div>
-    <img src={JuadebImage} alt="Juadeb image" />
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(user, rootElement);
-```
-
-Let's inject the user inside the main JSX element and see the result:
-
-```js
-// index.js
-import React from "react";
-import ReactDOM from "react-dom";
-// To get the root element from the HTML document
-import JuadebImage from "./images/Juadeb.jpg";
-// JSX element, header
-const welcome = "Welcome to 30 Days Of React";
-const title = "Getting Started React";
-const subtitle = "JavaScript Library";
-const author = {
-  firstName: "Juadeb",
-  lastName: "Adebowale",
-};
-const date = "Oct 2, 2023";
-
-// JSX element, header
-const header = (
-  <header>
-    <div className="header-wrapper">
-      <h1>{welcome}</h1>
-      <h2>{title}</h2>
-      <h3>{subtitle}</h3>
-      <p>
-        Instructor: {author.firstName} {author.lastName}
-      </p>
-      <small>Date: {date}</small>
-    </div>
-  </header>
-);
-
-const numOne = 3;
-const numTwo = 2;
-
-const result = (
-  <p>
-    {numOne} + {numTwo} = {numOne + numTwo}
-  </p>
-);
-
-const yearBorn = 1820;
-const currentYear = new Date().getFullYear();
-const age = currentYear - yearBorn;
-const personAge = (
-  <p>
-    {" "}
-    {author.firstName} {author.lastName} is {age} years old
-  </p>
-);
-
-// JSX element, main
-const techs = ["HTML", "CSS", "JavaScript"];
-const techsFormatted = techs.map((tech) => <li>{tech}</li>);
-
-const user = (
-  <div>
-    <img src={JuadebImage} alt="Juadeb image" />
-  </div>
-);
-
-// JSX element, main
-const main = (
-  <main>
-    <div className="main-wrapper">
-      <p>
-        Prerequisite to get started{" "}
-        <strong>
-          <em>react.js</em>
-        </strong>
-        :
-      </p>
-      <ul>{techsFormatted}</ul>
-      {result}
-      {personAge}
-      {user}
-    </div>
-  </main>
-);
-
-const copyRight = "Copyright 2023";
-
-// JSX element, footer
-const footer = (
-  <footer>
-    <div className="footer-wrapper">
-      <p>{copyRight}</p>
-    </div>
-  </footer>
-);
-
-// JSX element, app
-const app = (
-  <div className="app">
-    {header}
-    {main}
-    {footer}
-  </div>
-);
-
-const rootElement = document.getElementById("root");
-// we render the JSX element using the ReactDOM package
-ReactDOM.render(app, rootElement);
-```
+- [Classes](https://www.w3schools.com/REACT/react_es6_classes.asp)
+- [Arrow Functions](https://www.w3schools.com/REACT/react_es6_arrow.asp)
+- [Variables](https://www.w3schools.com/REACT/react_es6_variables.asp)
+- [Array Methods](https://www.w3schools.com/REACT/react_es6_array_methods.asp)
+- [Destructuring](https://www.w3schools.com/REACT/react_es6_destructuring.asp)
+- [Spread Operator](https://www.w3schools.com/REACT/react_es6_spread.asp)
+- [Modules](https://www.w3schools.com/REACT/react_es6_modules.asp)
+- [Ternary Operator](https://www.w3schools.com/REACT/react_es6_ternary.asp)
