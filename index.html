@@ -3,7 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+
     <title>React JS Class</title>
+    <style>
+      /* == General style === */
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        line-height: 1.5;
+        font-family: "Montserrat";
+        font-weight: 300;
+        color: black;
+      }
+
+      .root {
+        min-height: 100%;
+        position: relative;
+      }
+
+      .header-wrapper,
+      .main-wrapper,
+      .footer-wrapper {
+        width: 85%;
+        margin: auto;
+      }
+
+      .header-wrapper,
+      .main-wrapper {
+        padding: 10px;
+        margin: 2px auto;
+      }
+
+      h1 {
+        font-size: 70px;
+        font-weight: 300;
+      }
+
+      h2,
+      h3 {
+        font-weight: 300;
+      }
+
+      header {
+        background-color: #61dbfb;
+        padding: 10px;
+      }
+
+      main {
+        padding: 10px;
+        padding-bottom: 60px;
+        /* Height of the footer */
+      }
+
+      ul {
+        margin-left: 15px;
+      }
+
+      ul li {
+        list-style: none;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        /* Height of the footer */
+        background: #6cf;
+      }
+
+      .footer-wrapper {
+        font-weight: 400;
+        text-align: center;
+        line-height: 60px;
+      }
+    </style>
   </head>
 
   <body>
@@ -21,54 +105,84 @@
     <script type="text/babel">
       // To get the root element from the HTML document
       const rootElement = document.querySelector(".root");
-
-      // style
-      const headerStyles = {
-        backgroundColor: "#61DBFB",
-        fontFamily: "Helvetica Neue",
-        padding: 25,
-        lineHeight: 1.5,
+      // JSX element, header
+      const welcome = "Welcome to React JS Class";
+      const title = "Getting Started React";
+      const subtitle = "JavaScript Library";
+      const author = {
+        firstName: "Adebowale",
+        lastName: "Julius",
       };
+      const date = "June 23, 2023";
 
       // JSX element, header
       const header = (
-        <header style={headerStyles}>
+        <header>
           <div className="header-wrapper">
-            <h1>Welcome to React JS</h1>
-            <h2>Getting Started React</h2>
-            <h3>JavaScript Library</h3>
-            <p>Adebowale Julius</p>
-            <small>June 23, 2023</small>
+            <h1>{welcome}</h1>
+            <h2>{title}</h2>
+            <h3>{subtitle}</h3>
+            <p>
+              Instructor: {author.firstName} {author.lastName}
+            </p>
+            <small>Date: {date}</small>
           </div>
         </header>
       );
 
+      const numOne = 3;
+      const numTwo = 2;
+
+      const result = (
+        <p>
+          {numOne} + {numTwo} = {numOne + numTwo}
+        </p>
+      );
+
+      const yearBorn = 1820;
+      const currentYear = 2023;
+      const age = currentYear - yearBorn;
+      const personAge = (
+        <p>
+          {" "}
+          {author.firstName} {author.lastName} is {age} years old
+        </p>
+      );
+
       // JSX element, main
-      const mainStyles = {
-        backgroundColor: "#F3F0F5",
-      };
+      const techs = ["HTML", "CSS", "JavaScript"];
+      const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>);
+
+      // JSX element, main
       const main = (
-        <main style={mainStyles}>
-          <p>Prerequisite to get started react.js:</p>
-          <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-          </ul>
+        <main>
+          <div className="main-wrapper">
+            <p>
+              Prerequisite to get started{" "}
+              <strong>
+                <em>react.js</em>
+              </strong>
+              :
+            </p>
+            <ul>{techsFormatted}</ul>
+            {result}
+            {personAge}
+          </div>
         </main>
       );
 
-      const footerStyles = {
-        backgroundColor: "#61DBFB",
-      };
+      const copyRight = "Copyright 2023";
+
       // JSX element, footer
       const footer = (
-        <footer style={footerStyles}>
-          <p>Copyright 2023</p>
+        <footer>
+          <div className="footer-wrapper">
+            <p>{copyRight}</p>
+          </div>
         </footer>
       );
 
-      // JSX element, app
+      // JSX element, app your main component where other small components will be imported...
       const app = (
         <div className="app">
           {header}
