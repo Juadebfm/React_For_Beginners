@@ -79,7 +79,6 @@ In React, components are reusable building blocks that encapsulate a specific pi
 Here's an example of adding components within a parent component:
 
 ```jsx
-Copy code
 import React from 'react';
 import Header from './Header';
 import MainContent from './MainContent';
@@ -94,6 +93,7 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
 ```
