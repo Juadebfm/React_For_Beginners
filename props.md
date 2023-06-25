@@ -62,6 +62,7 @@ function Garage() {
     <>
       <h1>Who lives in my garage?</h1>
       <Car brand="Ford" />
+      <Car brand = "MayBach"/>
     </>
   );
 }
