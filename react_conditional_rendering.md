@@ -14,13 +14,16 @@
 
 </div>
 
+- [Conditional Rendering](#conditional-rendering)
+  - [Conditional Rendering using If and Else statement](#conditional-rendering-using-if-and-else-statement)
+  - [Conditional Rendering using Ternary Operator](#conditional-rendering-using-ternary-operator)
+  - [Conditional Rendering using \&\& Operator](#conditional-rendering-using--operator)
+
 # Conditional Rendering
 
 Conditional rendering in React allows you to control what content is displayed in your components based on certain conditions or variables. It's a powerful feature that enables you to create dynamic and interactive user interfaces. There are several ways to implement conditional rendering in React, and I'll explain a few common approaches:
 
 ## Conditional Rendering using If and Else statement
-
-### If statement:
 
 You can use a simple if statement within the render() method of your component to conditionally render content. For example:
 
