@@ -47,28 +47,31 @@ The most standard folder structure for a React project follows a modular and sca
 ```bash
 /src
   /components
-    /Component1
-      - Component1.js
-      - Component1.css
-    /Component2
-      - Component2.js
-      - Component2.css
+    /smallComps
+      - Button.jsx
+      - Button.css
+    /Header
+      - Header.jsx
+      - Header.css
+    /Footer
+      - Footer.jsx
+      - Footer.css
     ...
   /pages
-    /Page1
-      - Page1.js
-      - Page1.css
-    /Page2
-      - Page2.js
-      - Page2.css
+    /Home
+      - Home.jsx
+      - Home.css
+    /About
+      - About.jsx
+      - About.css
     ...
   /services
-    - service1.js
-    - service2.js
+    - Login.jsx
+    - Logout.jsx
     ...
   /utils
-    - utility1.js
-    - utility2.js
+    - Authentication.jsx
+    - ErrorLogic.jsx
     ...
   App.js
   index.js
