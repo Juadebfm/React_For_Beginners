@@ -17,6 +17,7 @@
 - [React Project Folder Structure and File Naming](#react-project-folder-structure-and-file-naming)
   - [File Naming](#file-naming)
   - [Folder](#folder)
+  - [Most standard react file structure](#most-standard-react-file-structure)
   - [Components Folder](#components-folder)
   - [Fragments](#fragments)
 
@@ -38,6 +39,61 @@ I found it easy to put all images, icons and fonts in the assets folder and all 
 
 So far, we have been working on index.js file. We have lots of component on index.js. Today we will move every component to a single file and we will import all the files to App.js. In the process, you will see my folder structure. Currently, we are at src directory. All the folder structure will be inside the src directory. Let's start from the index.js file. In addition to index.js file, let's create an App.js file and move most of the components we had to App.js for the time being.
 The index.js is your getaway to connect the component with index.html.
+
+## Most standard react file structure
+
+The most standard folder structure for a React project follows a modular and scalable approach, making it easier to manage and maintain your codebase. Here's an explanation of the most common folder structure for a React project:
+
+```bash
+/src
+  /components
+    /Component1
+      - Component1.js
+      - Component1.css
+    /Component2
+      - Component2.js
+      - Component2.css
+    ...
+  /pages
+    /Page1
+      - Page1.js
+      - Page1.css
+    /Page2
+      - Page2.js
+      - Page2.css
+    ...
+  /services
+    - service1.js
+    - service2.js
+    ...
+  /utils
+    - utility1.js
+    - utility2.js
+    ...
+  App.js
+  index.js
+  index.css
+```
+
+Let's go through each folder and its purpose:
+
+- /src: The root folder for your project's source code.
+
+- /components: This folder contains reusable components that can be used across multiple pages or sections of your application.
+
+- /pages: This folder contains components that represent individual pages of your application. Each page can consist of multiple components from the /components folder.
+
+- /services: This folder is used to store services or API-related files. It can include functions or modules that handle data fetching, API calls, or other external services.
+
+- /utils: This folder is for utility files that contain helper functions, constants, or other utility modules that can be used throughout your application.
+
+- App.js: The main component that serves as the entry point of your application. It typically includes the routing configuration and renders the necessary components based on the current URL.
+
+- index.js/main.jsx: The entry point file that renders the root component (App.js) into the HTML DOM.
+
+- index.css: The global CSS file that contains styles applicable to the entire application.
+
+This folder structure provides a clear separation of concerns, promotes reusability, and makes it easier to navigate and locate specific files. However, it's important to note that folder structures can vary depending on the project's size, complexity, and specific requirements. Feel free to adapt and customize the structure as needed for your project.
 
 ## Components Folder
 
