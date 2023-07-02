@@ -45,6 +45,7 @@ import React, { useState } from "react";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -102,7 +103,7 @@ Now let's see an actual use case...
 import React, { useState } from "react";
 
 const App = () => {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  // const [isLoggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -183,6 +184,8 @@ const App = () => {
 };
 
 export default App;
+
+
 ```
 
 In this example, we still use the `isLoggedIn` state variable to track the user's authentication status. Instead of using if-else statements, we use the `&&` operator for conditional rendering. When `isLoggedIn` is true, the first expression after the `&&` operator is evaluated and rendered. It displays the welcome message and the `Logout` button. When `isLoggedIn` is false, the second expression after the `&&` operator is evaluated and rendered. It shows the message prompting the user to log in and the `Login` button. The `&&` operator acts as a short-circuit evaluation. If the condition before the `&&` is false, React skips evaluating the subsequent expression, effectively not rendering it. Using the `&&` operator can be handy for simple conditional rendering when you have two distinct states to render. However, it can become cumbersome when you have more than two states to render. In such cases, you can use the ternary operator or if-else statements.
