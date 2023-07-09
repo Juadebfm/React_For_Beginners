@@ -59,7 +59,7 @@ Array destructuring is a way to get individual items from an array of items, and
 //Array
 let veggies = [parsley, onion, carrot];
 
-const [v1, v2, v3] = veggies;
+const [v1, v2, v3] = veggies; //
 
 console.log(v1); // parsley
 console.log(v2); // onion
@@ -74,8 +74,46 @@ However, to destructure an object, you have to destruture the property of an obj
 import { useState } from "react";
 
 export default function App() {
-  const restaurantName = useState("Lemon");
-  console.log(restaurantName);
-  return null
+  const testName = useState("Test");
+  console.log(testName);
+  return null;
+}
+```
+
+NB: I returned `null` in the jsx above because i only want to focus on the `console` for now. Now if you inspect the console, you will notice that what is logged onto it is an array with the string `Test` which is the value of the state variable and the second is a function that will be used to update the state.
+
+**useState hook invocation returns a _(2)_ member array**
+
+The convention is to name the state updating function with camelCases
+
+```jsx
+import { useState } from "react";
+
+export default function App() {
+  const [testName, setTestName] = useState("Test");
+  return <h1>{testName}</h1>;
+}
+```
+
+Now the destructured _testName_ is the state (or holds the state) and the destructured _setTestName_ holds the state updating function as seen in the console before now.
+
+Now how to update the actual state, i.e how to invoke the state updating function is done or triggered by a user interacting with the app through user generated events. e.g button clicks
+
+```jsx
+import { useState } from "react";
+
+export default function App() {
+  const [testName, setTestName] = useState("Test");
+
+  function updateTestName() {
+    setTestName("Updated Test");
+  }
+
+  return (
+    <div>
+      <h1>{testName}</h1>
+      <button onClick={updateTestName}>Update Test Name</button>
+    </div>
+  );
 }
 ```
