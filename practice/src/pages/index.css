@@ -1,1 +1,27 @@
+.card {
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  width: 50%;
+  margin: auto;
+  margin-top: 2rem;
+  padding: 2rem;
+}
 
+.btn {
+  padding: 10px 15px;
+  background-color: #808080;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+}
+
+.highlighted {
+  font-family: cursive;
+  width: 50%;
+  background-color: blue;
+  margin: auto;
+  color: lightgray;
+  text-align: center;
+}

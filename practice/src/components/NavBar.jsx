@@ -6,10 +6,19 @@ const Navbar = () => {
     <nav className="nav">
       <ul>
         <li>
-          <Link to="/" className="link">TestPage</Link>
+          <Link to="/" className="link">
+            TestPage
+          </Link>
         </li>
         <li>
-          <Link to="/Goals" className="link">GoalsApp</Link>
+          <Link to="/Goals" className="link">
+            GoalsApp
+          </Link>
+        </li>
+        <li>
+          <Link to="/NewCard" className="link">
+            New Card
+          </Link>
         </li>
       </ul>
     </nav>
