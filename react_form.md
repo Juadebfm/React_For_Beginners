@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> React Class: Form</h1>
+  <h1> React Class: form</h1>
   <a class="header-badge" target="_blank" href="https://www.linkedin.com/in/juadebade/">
   <img src="https://img.shields.io/badge/style--5eba00.svg?label=LinkedIn&logo=linkedin&style=social">
   </a>
@@ -14,14 +14,14 @@
 
 </div>
 
-- [Forms](#forms)
-  - [Getting data from an input field](#getting-data-from-an-input-field)
-  - [Getting multiple input data from form](#getting-multiple-input-data-from-form)
-  - [Get data from different input field types](#get-data-from-different-input-field-types)
-  - [Form Validation](#form-validation)
-  - [What is validation?](#what-is-validation)
-  - [What is the purpose of validation](#what-is-the-purpose-of-validation)
-  - [Validation Types](#validation-types)
+- [Form](#forms)
+  - [Keys](#keys)
+  - [How to use react lists](#how-to-use-react-lists)
+    - [Step 1: Setting up the data](#step-1-setting-up-the-data)
+    - [Step 2: Rendering the List](#step-2-rendering-the-list)
+    - [Step 3: Adding Keys](#step-3-adding-keys)
+    - [Step 4: Rendering Lists of Components](#step-4-rendering-lists-of-components)
+    - [Step 5: Extracting Components](#step-5-extracting-components)
 
 # Forms
 
@@ -78,7 +78,8 @@ Now, you know most of the fields we need to get data from a form. Let's start wi
 
 ## Getting data from an input field
 
-So far we did not get any data from input field. Now, it is time to learn how to get data from an input field. We need an input field, event listener (onChange) and state to get data from a controlled input. See the example below. The h1 element below the input tag display what we write on the input. The input element has many attributes such as value, name, id, placeholder, type and event handler. In addition, we can link a label and an input field using an id of input field and htmlFor of the label.If label and input are linked it will focus the input when we click on label. Look at the example give below.
+So far we did not get any data from input field. Now, it is time to learn how to get data from an input field. We need an input field, event listener (onChange) and state to get data from a controlled input. See the example below. The h1 element below the input tag display what we write on the input.
+The input element has many attributes such as value, name, id, placeholder, type and event handler. In addition, we can link a label and an input field using an id of input field and htmlFor of the label.If label and input are linked it will focus the input when we click on label. Look at the example give below.
 
 ```js
 import React, { Component } from "react";

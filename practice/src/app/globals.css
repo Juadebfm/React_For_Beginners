@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  .rec {
-    @apply border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100;
-  }
-}
