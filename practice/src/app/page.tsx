@@ -1,7 +1,7 @@
+import Navbar from "@/components/Navbar";
 import TodoItem from "@/components/TodoItem";
 import { prisma } from "@/db";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 function getTodos() {
   return prisma.todo.findMany();
