@@ -1,6 +1,17 @@
+  
+  //so now say we want to query the jsonplaceholder api when ever the use effect is ran and the usestate is triggered
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/${backendData}`)
       .then((response) => response.json())
       .then((json) => console.log(json));
+  }),
+    [backendData];
+
+
+  // let's set the value to some form of state
+      useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/${backendData}`)
+      .then((response) => response.json())
+      .then((json) => setItems(json));
   }),
     [backendData];
