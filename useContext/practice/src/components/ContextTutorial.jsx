@@ -1,21 +1,9 @@
 import Login from "./Login";
 import User from "./User";
 import { useState, createContext } from "react";
+1
 
-// function ContextTutorial() {
-//   const [username, setUsername] = useState("");
-//   return (
-//     <div>
-//       <Login setUsername={setUsername} />
-//       <User username={username} />
-//     </div>
-//   );
-// }
-
-// first we import the create context from react
-// Context is just a collection of states and we can have access to these states and their value using the context api
-
-export const AppContext = createContext(null);
+export const AppContext = createContext(null); //AppContext
 
 function ContextTutorial() {
   const [username, setUsername] = useState("");
