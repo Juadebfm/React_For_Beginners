@@ -40,9 +40,7 @@ To summarize, useRef is a powerful tool in React that allows you to keep track o
 | Re-renders:                  |                  Changing the current property of a useRef object doesn't trigger a re-render since it's considered to be outside the component's rendering cycle.                   |                                        When the state value changes via setState, the component re-renders to reflect the updated state. |
 | Mutability:                  | The value held by useRef can be mutated directly without triggering re-renders. However, it's recommended to use useState for managing state changes that should trigger re-renders. | State values are immutable. When you update state with setState, a new state object is created, and React handles the rendering for you. |
 | Preservation across renders: |                                   The current value of a useRef object persists across re-renders without being affected by the re-render process.                                   |                                               State values are preserved across re-renders, and each render gets the latest state value. |
-| Typical Use Cases:|
-
-| For holding onto DOM elements or values that need to be retained between renders but don't need to trigger a re-render. | For managing state that affects the component's rendering and requires reactivity. |
+| Typical Use Cases:           |                               For holding onto DOM elements or values that need to be retained between renders but don't need to trigger a re-render.                                |                                                       For managing state that affects the component's rendering and requires reactivity. |
 
 ```jsx
 import React, { useState, useRef } from "react";
