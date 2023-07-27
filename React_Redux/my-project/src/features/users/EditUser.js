@@ -1,10 +1,8 @@
-import { useState } from "react";
 
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 
-
-
+const EditUser = () => {
   return (
     <div className="mt-10 max-w-xl mx-auto">
       <TextField
@@ -16,7 +14,7 @@ import TextField from "../../components/TextField";
         label="Email"
         inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
-      <Button onClick={handleEditUser}>Edit</Button>
+      <Button>Edit</Button>
     </div>
   );
 };

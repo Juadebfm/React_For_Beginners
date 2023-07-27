@@ -8,24 +8,23 @@ const users = [
   { id: "3", name: "George", email: "goerge@gmail.com" },
 ];
 
-const renderCard = () => {
-  users.map((user) => (
-    <div key={user.id}>
-      <div>
-        <h3>{user.name}</h3>
-        <span>{user.email}</span>
-      </div>
-      <div>
-        <Link to={`edit-user/${user.id}`}>
-          <Button>Edit</Button>
-        </Link>
-        <Button>Delete</Button>
-      </div>
-    </div>
-  ));
-};
-
 function UserList() {
+  const renderCard = () => {
+    users.map((user) => (
+      <div key={user.id}>
+        <div>
+          <h3>{user.name}</h3>
+          <span>{user.email}</span>
+        </div>
+        <div>
+          <Link to={`edit-user/${user.id}`}>
+            <Button>Edit</Button>
+          </Link>
+          <Button>Delete</Button>
+        </div>
+      </div>
+    ));
+  };
   return (
     <div>
       <div>
