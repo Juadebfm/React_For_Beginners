@@ -28,7 +28,7 @@ The useContext hook was introduced in React 16.8 as a way to simplify state mana
 To use the useContext hook, you need to import it from the React library:
 
 ```jsx
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 ```
 
 The useContext hook takes a context object as its argument and returns the current value from the provided context:
@@ -49,20 +49,18 @@ Let's say you have a user context that stores information about the current user
 const UserContext = React.createContext();
 
 // In a higher-level component or App.js
-<UserContext.Provider value={{ username: 'John', loggedIn: true }}>
+<UserContext.Provider value={{ username: "John", loggedIn: true }}>
   <App />
-</UserContext.Provider>
-
+</UserContext.Provider>;
 
 //To access the user context in a lower-level component, use the useContext hook:
-
 
 const UserInfo = () => {
   const user = useContext(UserContext);
   return (
     <div>
       <p>Username: {user.username}</p>
-      <p>Logged In: {user.loggedIn ? 'Yes' : 'No'}</p>
+      <p>Logged In: {user.loggedIn ? "Yes" : "No"}</p>
     </div>
   );
 };
@@ -161,6 +159,7 @@ function Component1() {
     </UserContext.Provider>
   );
 }
+
 ```
 
 Now, all components in this tree will have access to the user Context.

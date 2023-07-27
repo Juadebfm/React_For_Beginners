@@ -3,7 +3,7 @@ import { AppContext } from "./ContextTutorial";
 // { setUsername }
 
 const Login = () => {
-  const { setUsername } = useContext(AppContext);
+  const { setUsername, username } = useContext(AppContext);
 
   return (
     <div>
@@ -13,6 +13,7 @@ const Login = () => {
           setUsername(event.target.value);
         }}
       />
+      <h2>{username}</h2>
     </div>
   );
 };
