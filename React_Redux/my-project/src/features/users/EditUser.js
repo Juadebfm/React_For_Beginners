@@ -1,38 +1,22 @@
-import React, { useState } from "react";
-import TextField from "../../components/TextField";
+import { useState } from "react";
+
 import Button from "../../components/Button";
+import TextField from "../../components/TextField";
 
-const EditUser = () => {
-  const [values, setValues] = useState({
-    name: "",
-    email: "",
-  });
 
-  const handleEditUser = () => {
-    setValues({ name: "", email: "" });
-  };
 
   return (
-    <div className="space-y-5">
+    <div className="mt-10 max-w-xl mx-auto">
       <TextField
-        label="name"
-        value={values.name}
-        onChange={(e) => setValues({ ...values, name: e.target.value })}
-        inputProps={{
-          type: "text",
-          placeholder: "Enter User Name",
-        }}
+        label="Name"
+        inputProps={{ type: "text", placeholder: "Jhon Doe" }}
       />
+      <br />
       <TextField
-        label="name"
-        value={values.email}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
-        inputProps={{
-          type: "text",
-          placeholder: "Enter User Email",
-        }}
+        label="Email"
+        inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
-      <Button onClick={handleEditUser}>Edit User</Button>
+      <Button onClick={handleEditUser}>Edit</Button>
     </div>
   );
 };

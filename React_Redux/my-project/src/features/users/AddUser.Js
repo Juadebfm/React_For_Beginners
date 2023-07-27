@@ -1,38 +1,41 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextField from "../../components/TextField";
 
 const AddUser = () => {
+  //redux
+  // normal
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     email: "",
   });
 
   const handleAddUser = () => {
+    //normal
     setValues({ name: "", email: "" });
+
+    // normal
+    navigate("/");
   };
 
   return (
-    <div className="space-y-5">
+    <div className="mt-10 max-w-xl mx-auto">
       <TextField
-        label="name"
+        label="Name"
         value={values.name}
         onChange={(e) => setValues({ ...values, name: e.target.value })}
-        inputProps={{
-          type: "text",
-          placeholder: "Enter User Name",
-        }}
+        inputProps={{ type: "text", placeholder: "Jhon Doe" }}
       />
+      <br />
       <TextField
-        label="email"
+        label="Email"
         value={values.email}
         onChange={(e) => setValues({ ...values, email: e.target.value })}
-        inputProps={{
-          type: "text",
-          placeholder: "Enter User Email",
-        }}
+        inputProps={{ type: "email", placeholder: "jhondoe@mail.com" }}
       />
-      <Button onClick={handleAddUser}>Edit User</Button>
+      <Button onClick={handleAddUser}>Submit</Button>
     </div>
   );
 };
