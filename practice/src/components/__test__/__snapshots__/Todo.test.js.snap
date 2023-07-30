@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="p-10 bg-slate-200"
+  data-testid="todo-2"
+>
+  <strike>
+    <h1
+      className="font-semibold font-serif"
+    >
+      Todo - u
+      COPY THE APP COMPONENT
+    </h1>
+  </strike>
+</div>
+`;
